@@ -14,7 +14,7 @@ export const reducer = createReducer(
     const exists = state.cart.items.find((item) => item.sku === sku);
     if (exists) { // update item
       const newCartItems = state.cart.items.map((item) => item.sku === sku ? { ...item, quantity: item.quantity + 1, subTotal: item.unitPrice * (item.quantity + 1) } : item );
-      const newGrandTotal = newCartItems.reduce((total, item) => total + (item.subTotal), 0);
+      const newGrandTotal = newCartItems.reduce((total, item) => total + item.subTotal, 0);
         return {
         ...state,
         cart: {
@@ -54,7 +54,7 @@ export const reducer = createReducer(
   }),
   on(incrementProductQuantity, (state, action) => {
     const newCartItems = state.cart.items.map((item) => item.sku === action.sku ? { ...item, quantity: item.quantity + 1, subTotal: item.unitPrice * (item.quantity + 1) } : item );
-    const newGrandTotal = newCartItems.reduce((total, item) => total + (item.subTotal), 0);
+    const newGrandTotal = newCartItems.reduce((total, item) => total + item.subTotal, 0);
     return {
       ...state,
       cart: {
