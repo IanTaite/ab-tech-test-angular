@@ -1,0 +1,31 @@
+<div class="product-list">
+  <div *ngIf="allDataAvailable else noData">
+    <table>
+      <thead>
+        <tr>
+          <th>Sku</th>
+          <th>Title</th>
+          <th class="align-right">Price</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of products">
+          <td>{{item.sku}}</td>
+          <td>
+            <ab-product-tile-with-thumb [title]="item.title" [thumbnail]="item.thumbnail" />
+          </td>
+          <td class="align-right">{{formatPrice(item.unitPrice)}}</td>
+          <td>
+            <button (click)="addProductToCartClick(item)">
+              Add to cart
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <ng-template #noData>
+    <p>There are no products.</p>
+  </ng-template>
+</div>

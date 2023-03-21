@@ -1,0 +1,63 @@
+<div class="cart-item-list">
+  <div *ngIf="(locale$|async) as locale">
+    <div *ngIf="(currency$|async) as currency">
+      <div *ngIf="(cart$|async) as cart">
+        <div *ngIf="cart.items.length > 0; else nodata">
+          <table>
+            <thead>
+              <tr>
+                <th>Sku</th>
+                <th>Title</th>
+                <th>Quantity</th>
+                <th class="align-right">Price</th>
+                <th class="align-right">Sub-total</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of cart.items">
+                <td>{{item.sku}}</td>
+                <td>
+                  <ab-product-tile-with-thumb [title]="item.title" [thumbnail]="item.thumbnail" />
+                </td>
+                <td>
+                  <button (click)="decrementProductQuantityClick(item)">-</button>
+                  <span class="quantity">{{item.quantity}}</span>
+                  <button (click)="incrementProductQuantityClick(item)">+</button>
+                </td>
+                <td class="align-right">{{formatPrice(locale, currency, item.unitPrice)}}</td>
+                <td class="align-right">{{formatPrice(locale, currency, item.subTotal)}}</td>
+                <td>
+                  <button (click)="removeProductFromCartClick(item)">
+                    Remove from Cart
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Grand Total</td>
+                <td class="align-right">{{formatPrice(locale, currency, cart.grandTotal)}}</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><button>Checkout</button></td>
+                <td></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+        <ng-template #nodata>
+          <p>Your cart is empty, please add a product from the list on the left.</p>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

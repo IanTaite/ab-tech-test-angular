@@ -1,0 +1,40 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 48px 1fr;
+  gap: 0 0;
+  grid-template-areas:
+    'navbar navbar'
+    'product-pane cart-pane';
+}
+
+.navbar {
+  grid-area: navbar;
+  background-color: #344b35;
+  color: white;
+}
+
+.pane {
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.left {
+  margin-left: 12px;
+  margin-right: 6px;
+}
+
+.right {
+  margin-left: 6px;
+  margin-right: 12px;
+}
+
+.product-pane {
+  grid-area: product-pane;
+  background-color: #fff;
+}
+
+.cart-pane {
+  grid-area: cart-pane;
+  background-color: #fff;
+}

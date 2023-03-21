@@ -1,0 +1,14 @@
+.product-tile-with-thumbs {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.product-image {
+  width: 64px;
+  height: 64px;
+}
+
+.product-title {
+  margin: 0 12px;
+}
