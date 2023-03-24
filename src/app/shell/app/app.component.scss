@@ -38,3 +38,16 @@
   grid-area: cart-pane;
   background-color: #fff;
 }
+
+@media  screen and (max-width: 1200px) {
+  .wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 48px 1fr 1fr;
+    gap: 0 0;
+    grid-template-areas:
+      'navbar'
+      'product-pane'
+      'cart-pane';
+  }
+}

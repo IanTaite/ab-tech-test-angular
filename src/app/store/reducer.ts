@@ -4,7 +4,9 @@ import {
   addProductToCart,
   removeProductFromCart,
   incrementProductQuantity,
-  decrementProductQuantity
+  decrementProductQuantity,
+  loadProducts,
+  loadProductsSuccess
 } from './actions';
 
 export const reducer = createReducer(
@@ -76,6 +78,28 @@ export const reducer = createReducer(
         grandTotal: newGrandTotal,
         items: newCartItems
       },
+    };
+  }),
+  on(loadProducts, (state, action) => {
+    return {
+      ...state,
+      product: {
+        ...state.product,
+        asyncInFlight: true,
+        error: null,
+        items: [],
+      }
+    };
+  }),
+  on(loadProductsSuccess, (state, action) => {
+    return {
+      ...state,
+      product: {
+        ...state.product,
+        asyncInFlight: false,
+        error: null,
+        items: action.items
+      }
     };
   })
 );

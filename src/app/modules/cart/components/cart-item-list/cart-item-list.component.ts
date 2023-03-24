@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { AppState, CartItem } from '../store/state';
-import { selectLocale, selectCurrency, selectCart } from '../store/selectors';
-import { formatAmountAsPrice } from '../helpers/formatAmountAsPrice';
+import { AppState, CartItem } from '../../../../store/state';
+import { selectI18n, selectCart } from '../../../../store/selectors';
+import { formatAmountAsPrice } from '../../../../helpers/formatAmountAsPrice';
 import {
   removeProductFromCart,
   incrementProductQuantity,
   decrementProductQuantity
-} from '../store/actions';
+} from '../../../../store/actions';
 
 @Component({
   selector: 'ab-cart-item-list',
@@ -19,9 +19,8 @@ export class CartItemListComponent {
     private store: Store<AppState>
   ) { }
 
-  public cart$ = this.store.pipe(select(selectCart));
-  public locale$ = this.store.pipe(select(selectLocale));
-  public currency$ = this.store.pipe(select(selectCurrency));
+  public cartSlice$ = this.store.pipe(select(selectCart));
+  public i18nSlice$ = this.store.pipe(select(selectI18n));
 
   public removeProductFromCartClick(item: CartItem) {
     this.store.dispatch(removeProductFromCart(item));

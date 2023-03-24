@@ -20,3 +20,17 @@ export const decrementProductQuantity = createAction(
   "[Cart] decrement product quantity",
   props<CartItem>()
 );
+
+export const loadProducts = createAction(
+  "[Products] Load products"
+);
+
+export const loadProductsError = createAction(
+  "[Products] Load products error",
+  props<{error: any}>()
+);
+
+export const loadProductsSuccess = createAction(
+  "[Products] Load products success",
+  props<{ items: ProductItem[] }>()
+);
